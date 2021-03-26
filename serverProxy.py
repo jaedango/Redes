@@ -8,6 +8,11 @@
 import socket
 import json
 
+# abrimos el archivo
+with open("config.json") as file:
+    #usamos json para manejar los datos
+    data = json.load(file)
+    
 
 def receive_full_mesage(connection_socket, buff_size):
     # esta función se encarga de recibir el mensaje completo desde el cliente
@@ -46,6 +51,11 @@ server_socket.listen(3)
 # nos quedamos esperando, como buen server, a que llegue una petición de conexión
 print('... Esperando clientes')
 while True:
+    # abrimos el archivo
+    with open("config.json") as file:
+    #usamos json para manejar los datos
+        data = json.load(file)
+
     # cuando llega una petición de conexión la aceptamos
     # y sacamos los datos de la conexión entrante (objeto, dirección)
     connection, address = server_socket.accept()
