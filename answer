@@ -1,0 +1,40 @@
+000080800001000100000000076578616d706c6503636f6d0000010001c00c000100010000493200045db8d822
+---- header ----
+00 00 -> ID
+80 80 -> *
+00 01 -> 1 consulta
+00 01 -> 1 respuesta
+00 00 -> no authority records
+00 00 -> no additional records
+*
+| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | A | B | C | D | E | F |
+|QR |     OPcode    |AA |TC |RD |RA |     Z     |     RCODE     |
+nuestra respuesta:
+| 1 | 0   0   0   0 | 0 | 0 | 0 | 1 | 0   0   0   0   0 | 0   0 |
+QR = 1    -> este mensaje es una respuesta
+AA = 0    -> este servidor no es una autoridad para example.com
+RD = 0    -> no pedimos recursion
+RA = 1    -> quien responde indica que si acepta preguntas recursivas
+RCODE = 0 -> no hubo error
+---- header -----
+---- response data question ----
+07 65 |7|e|
+78 61 |x|a|
+6d 70 |m|p|
+6c 65 |l|e|
+03 63 |3|c|
+6f 6d |o|m|
+00
+--QNAME-- 
+00 01 -> QTYPE
+00 01 -> QCLASS
+---- response data question ----
+---- response data answer ----
+c0 0c -> name
+00 01 -> type
+00 01 -> class
+00 00 4a 88 -> TTL
+00 04 -> RdLENGTH (4bytes)
+5d b8 d8 22 -> RDDATA
+93.184.216.34
+
