@@ -46,7 +46,7 @@ def parser(msg):
     # agregar data answer
     print("Server Answer:")
     # agregar ciclo while aca para ver el resto de las ips
-    '''while(i < len(arr)):
+    while(i < len(arr)):
         i+=4 # name
         tipo = int(arr[i]+arr[i+1]+arr[i+2]+arr[i+3],16)
         i+=4 # type
@@ -55,13 +55,13 @@ def parser(msg):
         RdLENGTH = int(arr[i]+arr[i+1]+arr[i+2]+arr[i+3],16)
         i+=4 #RDlength
         if tipo == 1:
-            # agregar el largo que falta
-
+            ip = ""
+            for val in range(RdLENGTH):
+                ip += str(int(arr[i+2*val]+arr[i+2*val+1],16))
+                ip+="."
+            print(ip)
         i+=2*RdLENGTH
-        #ciclo while ....
     '''
-
-
     i+=20 # aca nos saltamos toda la info entre
     RdLENGTH = int(arr[i]+arr[i+1]+arr[i+2]+arr[i+3],16)
     i+=4
@@ -69,7 +69,7 @@ def parser(msg):
     for j in range(RdLENGTH):
         ip += str(int(arr[i+2*j]+arr[i+2*j+1],16))
         ip +="."
-    print("ip = " + ip)
+    print("ip = " + ip)'''
 
 def tohex(dir):
     arr = dir.split(".")
@@ -121,9 +121,9 @@ def send_dns_message(dir):
     print("hola")
     msg = binascii.hexlify(data).decode("utf-8")
     parser(msg)
-    return msg
+    #return msg
 
-print(send_dns_message("cl."))
+send_dns_message("cl.")
 
 
 
