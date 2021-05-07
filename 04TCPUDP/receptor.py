@@ -22,16 +22,29 @@ while True:
     # ---------------------------------------------
     ## client mensaje 1
     # imprimimos el mensaje recibido
-    print("Mensaje = <<" + payload.decode() + ">>")
+    mensaje1 = payload.decode()
+    respsms = mensaje1[:3]
+    try:
+        respsms = int(respsms) + 1
+        respsms = str(respsms)
+    except:
+        print("error")
+    #respint = (int)respsms + 1
+    print("Mensaje = <<" + mensaje1 + ">>")
 
     # ---------------------------------------------
     ## server response 1
     print("Echoing data back to " + str(client_address))
-
+    sms2 = "200"
+    response = respsms + sms2
+    sent = server_socket.sendto(response.encode(), client_address)
+    '''
     # ---------------------------------------------
     ## client mensaje 2
-
+    payload, client_address = server_socket.recvfrom(buffsize)
+    mensaje2 = payload.decode()
+    respsms2 = (str)(((int)mensaje2[:3])+1)
+    
     # ---------------------------------------------
     ## server response 2
-
-    sent = server_socket.sendto(payload, client_address)
+    sent = server_socket.sendto(response.encode(),client_address)'''
