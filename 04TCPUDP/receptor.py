@@ -30,7 +30,7 @@ while True:
     except:
         print("error\n")
     
-    print("Mensaje1 = <<" + mensaje1 + ">>")
+    print("Mensaje1 = <<" + mensaje1[6:] + ">>")
 
     # ---------------------------------------------
     ## server response 1
@@ -52,6 +52,7 @@ while True:
     except:
         print("error\n")
     print("Mensaje2 = <<" + mensaje2 + ">>")
+    print("Coneccion establecida correctamente")
     # ---------------------------------------------
     ## server response 2
     sent = server_socket.sendto(respsms2.encode(),client_address)
