@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 import socket
+import time
 
 server_address = 'localhost'
 server_port = 5000
 buffsize = 64
+timeout = 10
 
 address = (server_address, server_port)
 
@@ -43,12 +45,19 @@ while True:
 
     # ---------------------------------------------
     # ## client message 2
-    payload, client_address = server_socket.recvfrom(buffsize)
-    mensaje2 = payload.decode()
-    msg2a = mensaje2[:3]    # respuesta de la verificacion anterior (ACK+1)
-    msg2b = mensaje1[3:]    # contenido del mensaje
-    if msg2a == str(int(resp1a) + 1):
-        print("Coneccion establecida correctamente")
-        print("Mensaje 2 = <<" + msg2b + ">>")
-    else:
-        print("Hubo problemas en la coneccion")
+    end_time = time.time() + timeout
+    while time.time() < end_time:
+        try:
+            payload, client_address = server_socket.recvfrom(buffsize)
+            mensaje2 = payload.decode()
+            msg2a = mensaje2[:3]    # respuesta de la verificacion anterior (ACK+1)
+            msg2b = mensaje1[3:]    # contenido del mensaje
+            if msg2a == str(int(resp1a) + 1):
+                print("Coneccion establecida correctamente")
+                print("Mensaje 2 = <<" + msg2b + ">>")
+            else:
+                print("Hubo problemas en la coneccion")
+        except:
+            print('There was an error, try again.')
+
+    
