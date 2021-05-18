@@ -5,7 +5,7 @@ import time
 server_address = 'localhost'
 server_port = 5000
 buffsize = 64
-timeout = 10
+timeout = 2
 
 address = (server_address, server_port)
 
@@ -22,7 +22,7 @@ while True:
     payload, client_address = server_socket.recvfrom(buffsize)
 
     # ---------------------------------------------
-    # ## client message 1
+    # ## client message 
     # ## imprimimos el mensaje recibido
     mensaje1 = payload.decode()
     msg1a = mensaje1[:3]    # 1s 3 char     -> mensaje de verificacion (SYN)
@@ -35,16 +35,16 @@ while True:
     print("Mensaje 1 = <<" + msg1b + ">>")
 
     # ---------------------------------------------
-    # ## server response 1
+    # ## server response 
     print("Echoing data back to " + str(client_address))
     resp1a = "200"          # nuevo mensaje de verificacion (ACK)
-    resp1b = msg1a          # verificacion del mensaje anterior (SYN+1)
+    resp1b = resp1          # verificacion del mensaje anterior (SYN+1)
     resp1c = msg1b          # contenido del mensaje
     resp = resp1a + resp1b + resp1c
     sent = server_socket.sendto(resp.encode(),client_address)
 
     # ---------------------------------------------
-    # ## client message 2
+    # ## client response 
     end_time = time.time() + timeout
     while time.time() < end_time:
         try:
