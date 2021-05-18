@@ -28,9 +28,9 @@ while True:
         respsms = int(respsms) + 1
         respsms = str(respsms)
     except:
-        print("error")
-    #respint = (int)respsms + 1
-    print("Mensaje = <<" + mensaje1 + ">>")
+        print("error\n")
+    
+    print("Mensaje1 = <<" + mensaje1 + ">>")
 
     # ---------------------------------------------
     ## server response 1
@@ -38,13 +38,20 @@ while True:
     sms2 = "200"
     response = respsms + sms2
     sent = server_socket.sendto(response.encode(), client_address)
-    '''
+    
     # ---------------------------------------------
     ## client mensaje 2
     payload, client_address = server_socket.recvfrom(buffsize)
     mensaje2 = payload.decode()
-    respsms2 = (str)(((int)mensaje2[:3])+1)
-    
+    ack = respsms[:3]
+    print(ack + "-> ack\n")
+    try:
+        respsms2 = mensaje1[3:6]
+        respsms2 = int(respsms) + 1
+        respsms2 = str(respsms2)
+    except:
+        print("error\n")
+    print("Mensaje2 = <<" + mensaje2 + ">>")
     # ---------------------------------------------
     ## server response 2
-    sent = server_socket.sendto(response.encode(),client_address)'''
+    sent = server_socket.sendto(respsms2.encode(),client_address)

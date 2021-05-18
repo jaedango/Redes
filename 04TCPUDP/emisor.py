@@ -36,20 +36,22 @@ message = client_socket.recvfrom(64)
 respuesta1 = message[0].decode()
 print(' -> Respuesta del servidor: <<' + respuesta1 + '>>')
 
-'''
+fin = int(respuesta1[:3])
+ack = int(respuesta1[3:6]) + 1 
+print(str(ack) + " = ack\n")
 # ---------------------------------------------
 ## client mensaje 2
-send_message2 = (str)((int)respuesta1[:3] + 1).encode()
-client_socket.send(send_message2)
+send_message2 = str(ack) + "300"
+client_socket.send(send_message2.encode())
 print("... Mensaje 2 enviado")
-time.sleep(2)
+time.sleep(1)
 
 # ---------------------------------------------
 ## server response 2
 message2 = client_socket.recvfrom(64)
 respuesta2 = message2[0].decode()
 print(' -> Respuesta del servidor: <<' + respuesta2 + '>>')
-'''
+
 
 # cerramos la conexion
 client_socket.close()
