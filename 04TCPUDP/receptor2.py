@@ -5,7 +5,7 @@ import time
 server_address = 'localhost'
 server_port = 5000
 buffsize = 64
-timeout = 2
+timeout = 1
 
 address = (server_address, server_port)
 
@@ -55,9 +55,10 @@ while True:
             if msg2a == str(int(resp1a) + 1):
                 print("Coneccion establecida correctamente")
                 print("Mensaje 2 = <<" + msg2b + ">>")
+                break
             else:
                 print("Hubo problemas en la coneccion")
+                break
         except:
             print('There was an error, try again.')
 
-    

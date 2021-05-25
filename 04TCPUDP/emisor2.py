@@ -4,7 +4,7 @@ import time
 server_address = 'localhost'
 server_port = 5000
 buffsize = 64
-timeout = 2
+timeout = 1
 address = (server_address, server_port)
 print('Crando socket - Cliente')
 
